@@ -21,7 +21,7 @@ int main(){
                        };
     tri_a_bulle(r);
     print_reservation_html(r[0]);
-
+    //blabla
     FILE* devis = fopen("devis.html","w");
     FILE* comptes = fopen("comptes.html", "w");
     ecrit_reservation_html(r[0],devis);
