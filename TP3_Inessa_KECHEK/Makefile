@@ -11,17 +11,8 @@ all: $(PROGRAMS)
 app: reservation.o main.o
 	$(CC) -o $@ $^
 
-
-main.o: main.c $(INCLUDE)reservation.h
-	$(CC) -o $@ -c main.c $(CFLAGS) -I$(INCLUDE)
-
-reservation.o: reservation.c $(INCLUDE)reservation.h
-	$(CC) -o $@ -c reservation.c $(CFLAGS) -I$(INCLUDE)
-
-
-
-
-
+%.o:%.c
+	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDE)
 
 clean:
 	rm -f *.o *~ $(PROGRAMS)
