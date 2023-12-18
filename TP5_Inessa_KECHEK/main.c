@@ -10,11 +10,17 @@
 
 int main(){
     const char *nom_pgm = "lena.pgm";
-    image *pgm_lena = loadImage(nom_pgm);
+    //image *pgm_lena = loadImage(nom_pgm);
 
-    print_pgm(pgm_lena);
-    free_image(pgm_lena);
-
+    //print_pgm(pgm_lena);
+    //recordImage("new_lena.pgm", pgm_lena);
+    //binarisation(128,nom_pgm);
+    //binarisation_inverse("nouvelle_lena.pgm");
+    //free_image(pgm_lena);
+    image* pgm=loadImage(nom_pgm);
+    erosion(pgm);
+    dilatation(pgm);
+    recordImage("erosion_dilatation_lena.pmg",pgm);
     return 0;
 
 }
