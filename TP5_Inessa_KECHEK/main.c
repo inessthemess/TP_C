@@ -18,9 +18,10 @@ int main(){
     //binarisation_inverse("nouvelle_lena.pgm");
     //free_image(pgm_lena);
     image* pgm=loadImage(nom_pgm);
+    recordImage("lena_recorded.pgm",pgm);
     erosion(pgm);
-    dilatation(pgm);
-    recordImage("erosion_dilatation_lena.pmg",pgm);
+    //dilatation(pgm);
+    //recordImage("erosion_lena.pgm",pgm);
     return 0;
 
 }

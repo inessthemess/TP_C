@@ -146,29 +146,46 @@ image* erosion(image* pgm){
     //free_image(pgm);
     //free_image(tmp);
     return tmp;
-}*/
-
+}
+*/
 void erosion(image* pgm) {
-    image* tmp=init_image(pgm->type,pgm->largeur,pgm->hauteur,pgm->val_max);
+    image* tmp=init_image(pgm->type,pgm->largeur-2,pgm->hauteur-2,pgm->val_max);
     for (int i = 1; i < pgm->largeur - 1; i++) {
         for (int j = 1; j < pgm->hauteur- 1; j++) {
-            // Calcul du min
-            int minVal = pgm->mat[i][j];
-            minVal=(pgm->mat[i-1][j]<minVal)?pgm->mat[i-1][j]:minVal;
-            minVal=(pgm->mat[i+1][j]<minVal)? pgm->mat[i + 1][j] :minVal; 
-            minVal=(pgm->mat[i][j-1]<minVal) ? pgm->mat[i][j -1] :minVal; 
-            minVal=(pgm->mat[i][j+1]<minVal) ?pgm->mat[i][j+ 1] : minVal; 
-
-            tmp->mat[i][j] = minVal;
+            int ver = pgm->mat[i-1][j]<pgm->mat[i][j]? pgm->mat[i-1][j]:pgm->mat[i][j];
+            int hor = pgm->mat[i+1][j-1]<pgm->mat[i+1][j+1]? pgm->mat[i+1][j-1]:pgm->mat[i+1][j+1];
+            int temp = hor<ver? hor:ver;
+            tmp->mat[i][j]=temp;
         }
     }
-    for (int i = 1; i < pgm->largeur - 1; i++) {
+    recordImage("er_lena.pgm",tmp);
+    /*for (int i = 1; i < pgm->largeur - 1; i++) {
         for (int j = 1; j < pgm->hauteur - 1; j++) {
             pgm->mat[i][j] = tmp->mat[i][j];
         }
-    }
+    }*/
 }
 
+/*
+void erosion(image* pgm) {
+
+    FILE* erodedpgm = fopen("PGM_er.pgm", "wb");
+    fprintf(erodedpgm, "P2\n");
+    fprintf(erodedpgm, "%d %d\n", image->largeur-2, image->hauteur-2);
+    fprintf(erodedpgm, "%d\n", image->max_val);
+
+    for (int i=1; i<image.leng-1; i++) { 
+        for (int j=1; j<image.larg-1; j++) { 
+            int ver = image.pixels[i-1][j]<image.pixels[i][j]? image.pixels[i-1][j]:image.pixels[i][j];
+            int hor = image.pixels[i+1][j-1]<image.pixels[i+1][j+1]? image.pixels[i+1][j-1]:image.pixels[i+1][j+1];
+            int temp = hor<ver? hor:ver;
+            fprintf(erodedpgm, "%d ", temp); 
+        }
+        fprintf(erodedpgm, "\n"); 
+    }
+    fclose(erodedpgm);
+}
+*/
 
 void dilatation(image* pgm) {
     image* tmp=init_image(pgm->type,pgm->largeur,pgm->hauteur,pgm->val_max);
