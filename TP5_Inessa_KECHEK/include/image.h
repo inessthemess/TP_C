@@ -18,8 +18,6 @@ typedef struct _image {
 } image;
 
 
-//cree une struct imagePGM avec toute les allocations necessaires
-image* init_image(char type_image[],int largeur_image, int hauteur_image, int valeur_max);
 //desalloue la struct imagePGM
 void free_image(image* pgm);
 //affiche les donnees d'une image sur le terminal
@@ -27,7 +25,7 @@ void print_pgm(image* pgm);
 //crée une matrice (pointeur de pointeurs) qui contiendra toutes les valeurs d’un fichier pgm.
 image* loadImage(const char *nom_pgm);
 //enregistre l’image au format pgm
-void recordImage(const char* nom_pgm, image* pgm);
+void recordImage(const char* nom_pgm,image* pgm);
 //prend comme argument un seuil et une image et modifie l’image de telle sorte que toute valeur en niveau de gris
 //supérieur à ce seuil sera mise à 255 et toute valeur inférieure sera mise à 0
 void binarisation(int seuil,const char* nom_pgm);
