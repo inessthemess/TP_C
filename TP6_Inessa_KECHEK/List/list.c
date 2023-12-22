@@ -74,21 +74,21 @@ ListNode* deleteNode(ListNode* list, int valeur){
     ListNode* tete=list;
     ListNode* tmp=NULL;
 
-    while (list!=NULL && list->val!=valeur){ //trouver l'element
-        tmp=list; // on garde un pointeur sur le precedent
+    while (list!=NULL && list->val!=valeur){ //trouver l'élément
+        tmp=list; // on garde un pointeur sur le précédent
         list=list->suiv;
     }
     if (!list){
         printf("[!] Élément %d non trouvé dans la liste\n",valeur);
     }
-    else{ // si j'ai trouve l'element
-        if(tmp){ //si il n'est pas le 1er 
+    else{ // si j'ai trouvé l'é;ément
+        if(tmp){ //s'il n'est pas le 1er 
             tmp->suiv=list->suiv;
         }
         else{ //s'il est le 1er
             tete=list->suiv; //on change la tete de liste
         }
-        free(list); // on libere l'element
+        free(list); // on libere l'élément
     }
     return tete;
 }
@@ -123,7 +123,7 @@ int searchNode(ListNode* list, int valeur){
 
 ListNode* sorterList(ListNode* liste) {
     // Utiliser le tri par insertion
-    ListNode* sortedList = NULL;
+    ListNode* nList = NULL;
     ListNode* tmp1 = liste;
     if (liste == NULL || liste->suiv == NULL) { //si liste vide ou a un seul element
         return liste;
@@ -132,18 +132,18 @@ ListNode* sorterList(ListNode* liste) {
     while (tmp1 != NULL) {
         ListNode* suivant = tmp1->suiv;
 
-        if (sortedList == NULL || tmp1->val < sortedList->val) {
+        if (nList == NULL || tmp1->val < nList->val) { 
             // Insérer au début de la liste triée
-            tmp1->suiv = sortedList;
-            sortedList = tmp1;
+            tmp1->suiv = nList;
+            nList = tmp1;
         } else {
-            // Chercher l'endroit approprié dans la liste triée
-            ListNode* tmp2 = sortedList;
+            // Chercher la ou il faut inserer
+            ListNode* tmp2 = nList;
             while (tmp2->suiv != NULL && tmp2->suiv->val < tmp1->val) {
                 tmp2 = tmp2->suiv;
             }
 
-            // Insérer le nœud après temp dans la liste triée
+            // Insérer tmp1 après tmp2 dans la liste triée
             tmp1->suiv = tmp2->suiv;
             tmp2->suiv = tmp1;
         }
@@ -151,7 +151,7 @@ ListNode* sorterList(ListNode* liste) {
         tmp1 = suivant;
     }
 
-    return sortedList;
+    return nList;
 }
 
 
