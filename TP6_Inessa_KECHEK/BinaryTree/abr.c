@@ -65,7 +65,34 @@ void inorder(TreeNode* abr){
     }
 }
 
+/*
+void delete(TreeNode* abr, int valeur){
+    if (abr->data!=valeur){
+        delete(abr->droit,valeur);
+        delete(abr->gauche,valeur);
+    }
+    else if (abr->data==valeur){
+        if (abr->gauche==NULL && abr->droit==NULL){
+            free(abr);
+        }
+        else if (abr->gauche==NULL && abr->droit!=NULL){
+            TreeNode* tmp=NULL;
+            abr->data=tmp;
+            free(abr);
+            abr=abr->droit;
+        }
+        else if (abr->gauche!=NULL && abr->droit==NULL){
+            TreeNode* tmp=NULL;
+            abr->data=tmp;
+            free(abr);
+            abr=abr->droit; 
+        }
+        else if (abr->gauche!=NULL && abr->droit!=NULL){
 
+        }
+    }
+}
 
+*/
 
 
