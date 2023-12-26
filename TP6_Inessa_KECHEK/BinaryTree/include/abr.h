@@ -25,4 +25,5 @@ void printAbr(TreeNode* abr);
 TreeNode* insert(TreeNode* abr,int valeur);
 //lire les valeurs en ordre croissant
 void inorder(TreeNode* abr);
+TreeNode* delete(TreeNode* abr, int valeur);
 #endif

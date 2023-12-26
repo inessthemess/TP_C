@@ -22,6 +22,9 @@ int main(){
     printf("parcours infixe :");
     inorder(abr);
     printf("\n");
+    abr=delete(abr,55);
+    inorder(abr);
+    printf("\n");
     freeAbr(abr);
     return 0;
 }

@@ -65,34 +65,49 @@ void inorder(TreeNode* abr){
     }
 }
 
-/*
-void delete(TreeNode* abr, int valeur){
-    if (abr->data!=valeur){
-        delete(abr->droit,valeur);
-        delete(abr->gauche,valeur);
-    }
-    else if (abr->data==valeur){
-        if (abr->gauche==NULL && abr->droit==NULL){
-            free(abr);
-        }
-        else if (abr->gauche==NULL && abr->droit!=NULL){
-            TreeNode* tmp=NULL;
-            abr->data=tmp;
-            free(abr);
-            abr=abr->droit;
-        }
-        else if (abr->gauche!=NULL && abr->droit==NULL){
-            TreeNode* tmp=NULL;
-            abr->data=tmp;
-            free(abr);
-            abr=abr->droit; 
-        }
-        else if (abr->gauche!=NULL && abr->droit!=NULL){
 
-        }
+
+TreeNode* delete(TreeNode* abr, int valeur) {
+    if (abr == NULL) {
+        return abr;  //l'élément n'est pas présent dans l'arbre
     }
+
+    if (valeur < abr->data) {
+        abr->gauche = delete(abr->gauche, valeur);
+    } else if (valeur > abr->data) {
+        abr->droit = delete(abr->droit, valeur);
+    } else {
+        //l'élément à effacer est trouvé
+
+        //pas d'enfant ou un seul enfant
+        if (abr->gauche == NULL) {
+            TreeNode* tmp=abr->droit;
+            free(abr);
+            return tmp;
+        } else if (abr->droit == NULL) {
+            TreeNode* tmp=abr->gauche;
+            free(abr);
+            return tmp;
+        }
+
+        //deux enfants
+        TreeNode* tmp = abr->droit;
+        while (tmp->gauche != NULL) {
+            tmp=tmp->gauche;
+        }
+
+        abr->data = tmp->data;
+
+        
+        abr->droit = delete(abr->droit, tmp->data);
+    }
+
+    return abr;
 }
 
-*/
+
+
+
+
 
 
